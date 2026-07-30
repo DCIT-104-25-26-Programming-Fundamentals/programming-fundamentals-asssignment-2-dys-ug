@@ -46,3 +46,53 @@
 #include <iostream>
 using namespace std;
 
+
+char getGrade(int student_score)
+{
+    if (student_score < 0 || student_score > 100)
+    {
+        return '\0';
+    }
+    else if (student_score >= 80)
+    {
+        return 'A';
+    }
+    else if (student_score >= 70)
+    {
+        return 'B';
+    }
+    else if (student_score >= 60)
+    {
+        return 'C';
+    }
+    else if (student_score >= 50)
+    {
+        return 'D';
+    }
+    else
+    {
+        return 'F';
+    }
+}
+
+
+int main()
+{
+    int student_score;
+
+    cout << "Enter student score (0-100): ";
+    cin >> student_score;
+
+    char final_grade = getGrade(student_score);
+
+    if (final_grade == '\0')
+    {
+        cout << "Error: Score must be between 0 and 100." << endl;
+    }
+    else
+    {
+        cout << "Grade: " << final_grade << endl;
+    }
+
+    return 0;
+}

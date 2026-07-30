@@ -80,3 +80,131 @@
 #include <string>
 using namespace std;
 
+
+void addTask(vector<string>& task_list)
+{
+    string task_description;
+
+    cout << "Enter task: ";
+    getline(cin, task_description);
+
+    task_list.push_back(task_description);
+
+    cout << "Task added: \"" << task_description << "\"" << endl;
+}
+
+
+void viewTasks(const vector<string>& task_list)
+{
+    if (task_list.size() == 0)
+    {
+        cout << "Your to-do list is empty." << endl;
+        return;
+    }
+
+    cout << "Your Tasks:" << endl;
+
+    for (int task_position = 0;
+         task_position < task_list.size();
+         task_position++)
+    {
+        cout << task_position + 1
+             << ". "
+             << task_list[task_position]
+             << endl;
+    }
+}
+
+
+void deleteTask(vector<string>& task_list)
+{
+    if (task_list.size() == 0)
+    {
+        cout << "There are no tasks to delete." << endl;
+        return;
+    }
+
+    viewTasks(task_list);
+
+    int task_number;
+
+    cout << "Enter task number to delete: ";
+    cin >> task_number;
+
+    cin.ignore();
+
+    if (task_number < 1 || task_number > task_list.size())
+    {
+        cout << "Error: Invalid task number." << endl;
+        return;
+    }
+
+    int task_position = task_number - 1;
+
+    string deleted_task = task_list[task_position];
+
+    task_list.erase(task_list.begin() + task_position);
+
+    cout << "Task \"" << deleted_task
+         << "\" has been removed."
+         << endl;
+}
+
+
+void displayMenu()
+{
+    cout << endl;
+    cout << "============================" << endl;
+    cout << "     TO-DO LIST MENU" << endl;
+    cout << "============================" << endl;
+    cout << "1. Add task" << endl;
+    cout << "2. View tasks" << endl;
+    cout << "3. Delete task" << endl;
+    cout << "4. Quit" << endl;
+}
+
+
+int main()
+{
+    vector<string> task_list;
+
+    bool program_running = true;
+
+    while (program_running == true)
+    {
+        displayMenu();
+
+        int selected_option;
+
+        cout << "Enter your choice (1-4): ";
+        cin >> selected_option;
+
+        cin.ignore();
+
+        if (selected_option == 1)
+        {
+            addTask(task_list);
+        }
+        else if (selected_option == 2)
+        {
+            viewTasks(task_list);
+        }
+        else if (selected_option == 3)
+        {
+            deleteTask(task_list);
+        }
+        else if (selected_option == 4)
+        {
+            cout << "Goodbye!" << endl;
+
+            program_running = false;
+        }
+        else
+        {
+            cout << "Error: Please choose a number from 1 to 4." << endl;
+        }
+    }
+
+    return 0;
+}
+

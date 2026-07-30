@@ -57,3 +57,100 @@
 #include <iostream>
 using namespace std;
 
+
+void printSingleTable(int selected_number)
+{
+    cout << endl;
+    cout << "Multiplication Table for " << selected_number << ":" << endl;
+
+    for (int multiplier_number = 1; multiplier_number <= 12; multiplier_number++)
+    {
+        int multiplication_result = selected_number * multiplier_number;
+
+        cout << selected_number
+             << " x "
+             << multiplier_number
+             << " = "
+             << multiplication_result
+             << endl;
+    }
+}
+
+
+void printMultipleTables(int last_table_number)
+{
+    for (int current_table_number = 1;
+         current_table_number <= last_table_number;
+         current_table_number++)
+    {
+        cout << endl;
+        cout << "Multiplication Table for "
+             << current_table_number
+             << ":"
+             << endl;
+
+        for (int multiplier_number = 1;
+             multiplier_number <= 12;
+             multiplier_number++)
+        {
+            int multiplication_result =
+                current_table_number * multiplier_number;
+
+            cout << current_table_number
+                 << " x "
+                 << multiplier_number
+                 << " = "
+                 << multiplication_result
+                 << endl;
+        }
+
+        cout << "---------------------------" << endl;
+    }
+}
+
+
+int main()
+{
+    int selected_option;
+
+    cout << "================================" << endl;
+    cout << "  MULTIPLICATION TABLE GENERATOR" << endl;
+    cout << "================================" << endl;
+    cout << "1. Print one multiplication table" << endl;
+    cout << "2. Print multiplication tables from 1 to N" << endl;
+    cout << "Choose an option (1-2): ";
+
+    cin >> selected_option;
+
+    if (selected_option == 1)
+    {
+        int selected_number;
+
+        cout << "Enter a number: ";
+        cin >> selected_number;
+
+        printSingleTable(selected_number);
+    }
+    else if (selected_option == 2)
+    {
+        int last_table_number;
+
+        cout << "Enter a positive number: ";
+        cin >> last_table_number;
+
+        if (last_table_number <= 0)
+        {
+            cout << "Error: The number must be a positive integer." << endl;
+            return 0;
+        }
+
+        printMultipleTables(last_table_number);
+    }
+    else
+    {
+        cout << "Error: Please choose option 1 or 2." << endl;
+    }
+
+    return 0;
+}
+
